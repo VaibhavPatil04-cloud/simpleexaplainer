@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/brain-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Simple Explainer - Learn Anything Simply!</title>
+    <meta name="description" content="Learn complex concepts explained as if you're 6 years old - with fun stories, comics, and simple words! Technology, Finance, Science, and Psychology made easy." />
+    <meta name="keywords" content="simple explanations, learn, education, kids, technology, finance, science, psychology, easy learning" />
+    <meta name="author" content="Simple Explainer Team" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://simple-explainer.com/" />
+    <meta property="og:title" content="Simple Explainer - Learn Anything Simply!" />
+    <meta property="og:description" content="Complex concepts explained like you're 6 years old - with fun stories and colorful illustrations!" />
+    <meta property="og:image" content="/og-image.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://simple-explainer.com/" />
+    <meta property="twitter:title" content="Simple Explainer - Learn Anything Simply!" />
+    <meta property="twitter:description" content="Complex concepts explained like you're 6 years old - with fun stories and colorful illustrations!" />
+    <meta property="twitter:image" content="/og-image.png" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#8B5CF6" />
+    
+    <!-- Favicon Variations -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- Google Fonts - Child-Friendly Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/main.jsx" as="script" />
+    
+    <!-- Performance Optimization -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    
+    <!-- Progressive Web App -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Simple Explainer" />
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "Simple Explainer",
+      "description": "Educational platform that explains complex concepts in simple, child-friendly language",
+      "url": "https://simple-explainer.com",
+      "logo": "https://simple-explainer.com/logo.png",
+      "sameAs": [
+        "https://twitter.com/simpleexplainer",
+        "https://instagram.com/simpleexplainer"
+      ],
+      "educationalLevel": "Beginner",
+      "teaches": [
+        "Technology",
+        "Finance", 
+        "Science",
+        "Psychology"
+      ]
+    }
+    </script>
+    
+    <!-- Loading Screen Styles -->
+    <style>
+      /* Loading screen while React loads */
+      #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #FEF7ED 0%, #F0F9FF 50%, #FDF4FF 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        font-family: 'Fredoka', cursive;
+      }
+      
+      .loading-brain {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #8B5CF6, #EC4899);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        animation: bounce 1.5s infinite;
+      }
+      
+      .loading-text {
+        color: #1E293B;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      
+      .loading-subtitle {
+        color: #64748B;
+        font-size: 1rem;
+      }
+      
+      .loading-dots {
+        display: inline-block;
+        animation: dots 1.5s infinite;
+      }
+      
+      @keyframes bounce {
+        0%, 20%, 53%, 80%, 100% {
+          transform: translate3d(0, 0, 0);
+        }
+        40%, 43% {
+          transform: translate3d(0, -8px, 0);
+        }
+        70% {
+          transform: translate3d(0, -4px, 0);
+        }
+        90% {
+          transform: translate3d(0, -2px, 0);
+        }
+      }
+      
+      @keyframes dots {
+        0%, 20% { content: ''; }
+        40% { content: '.'; }
+        60% { content: '..'; }
+        80%, 100% { content: '...'; }
+      }
+      
+      /* Hide loading screen when React loads */
+      .loaded #loading-screen {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+      <div class="loading-brain">🧠</div>
+      <div class="loading-text">Simple Explainer</div>
+      <div class="loading-subtitle">Loading awesome explanations<span class="loading-dots"></span></div>
+    </div>
+    
+    <!-- React Root -->
+    <div id="root"></div>
+    
+    <!-- Main Script -->
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Remove loading screen when React loads -->
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          document.body.classList.add('loaded');
+          setTimeout(function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+              loadingScreen.remove();
+            }
+          }, 500);
+        }, 1000); // Show loading for at least 1 second
+      });
+    </script>
+    
+    <!-- Service Worker for PWA (Optional) -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+            })
+            .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

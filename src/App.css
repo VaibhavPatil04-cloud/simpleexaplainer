@@ -1,0 +1,5 @@
+.app {
+  font-family: 'Fredoka', 'Comic Neue', cursive;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #FEF7ED 0%, #F0F9FF 50%, #FDF4FF 100%);
+}

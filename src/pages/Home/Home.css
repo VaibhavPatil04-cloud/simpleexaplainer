@@ -1,0 +1,118 @@
+.home {
+  min-height: 100vh;
+}
+
+.concepts-section {
+  padding: 80px 0;
+  background: var(--gradient-bg);
+}
+
+.section-header {
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 16px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
+  color: var(--dark-gray);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.category-section {
+  margin-bottom: 60px;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding: 20px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.category-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: var(--radius-md);
+  font-size: 28px;
+}
+
+.category-title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+}
+
+.concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.cta-section {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  box-shadow: var(--shadow-md);
+  margin-top: 60px;
+}
+
+.cta-title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 16px;
+  color: var(--text-dark);
+}
+
+.cta-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--dark-gray);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .concepts-section {
+    padding: 60px 0;
+  }
+  
+  .section-header {
+    margin-bottom: 40px;
+  }
+  
+  .category-section {
+    margin-bottom: 40px;
+  }
+  
+  .category-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .concepts-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .cta-section {
+    padding: 30px 20px;
+    margin-top: 40px;
+  }
+}
