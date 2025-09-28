@@ -21,6 +21,11 @@
   animation: float 3s ease-in-out infinite;
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
 .page-title {
   margin-bottom: 16px;
   color: var(--text-dark);
@@ -264,48 +269,152 @@
   border-left: 4px solid var(--accent-yellow);
 }
 
+/* Dark Mode Styles - Following the exact pattern from corrected About.css */
+[data-theme='dark'] .explain-anything {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+[data-theme='dark'] .page-title {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .page-subtitle {
+  color: #b3b3b3;
+}
+
+[data-theme='dark'] .search-section {
+  background: rgba(42, 42, 42, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .search-input {
+  background: rgba(26, 26, 26, 0.8);
+  color: #ffffff;
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+[data-theme='dark'] .search-input:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+}
+
+[data-theme='dark'] .search-input::placeholder {
+  color: #888888;
+}
+
+[data-theme='dark'] .popular-questions {
+  background: rgba(42, 42, 42, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .section-title {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .section-subtitle {
+  color: #b3b3b3;
+}
+
+[data-theme='dark'] .question-card {
+  background: rgba(26, 26, 26, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+[data-theme='dark'] .question-card:hover {
+  background: rgba(42, 42, 42, 0.95);
+  border-color: #8b5cf6;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.2);
+}
+
+[data-theme='dark'] .explanation-result {
+  background: rgba(42, 42, 42, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .result-header h2 {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .explanation-card {
+  background: rgba(26, 26, 26, 0.8);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+[data-theme='dark'] .question-display {
+  border-bottom-color: rgba(139, 92, 246, 0.3);
+}
+
+[data-theme='dark'] .question-display h3 {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .explanation-content p {
+  color: #e0e0e0;
+}
+
+[data-theme='dark'] .simple-answer {
+  background: rgba(16, 185, 129, 0.2);
+  color: #ffffff;
+}
+
+[data-theme='dark'] .story-explanation {
+  background: rgba(139, 92, 246, 0.2);
+  color: #ffffff;
+}
+
+[data-theme='dark'] .fun-fact {
+  background: rgba(245, 158, 11, 0.2);
+  color: #ffffff;
+}
+
+[data-theme='dark'] .error-message {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ff9999;
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .explain-anything {
     padding: 20px 0;
   }
-  
+
   .page-header {
     margin-bottom: 40px;
   }
-  
+
   .search-section,
   .popular-questions,
   .explanation-result {
     padding: 24px 20px;
   }
-  
+
   .search-form {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .search-input-container {
     min-width: auto;
   }
-  
+
   .search-btn {
     width: 100%;
   }
-  
+
   .questions-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .result-header {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .explanation-card {
     padding: 24px 20px;
   }
-  
+
   .question-display {
     flex-direction: column;
     text-align: center;

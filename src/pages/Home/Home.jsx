@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
@@ -20,147 +20,80 @@ import {
 } from 'react-icons/fa'
 import ConceptCard from '../../components/ConceptCard/ConceptCard'
 import Hero from '../../components/Hero/Hero'
+import { getAllConceptsByCategory } from '../../utils/conceptData'
 import './Home.css'
 
 const Home = () => {
   const [ref, inView] = useInView({
-    triggerOnce: false, // Change to false to allow re-triggering
-    threshold: 0.1,
-    rootMargin: '50px 0px', // Add some margin to trigger earlier
+    triggerOnce: true,
+    threshold: 0.1
   })
+  
+  const [conceptCategories, setConceptCategories] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  const conceptCategories = [
-    {
-      title: "Technology",
-      color: "var(--primary-purple)",
-      icon: FaLaptop,
-      concepts: [
-        {
-          id: "llm",
-          title: "What is an LLM?",
-          description: "Like a super-smart robot friend that reads lots of books!",
-          icon: FaBrain,
-          difficulty: "Easy",
-          readTime: "3 min"
-        },
-        {
-          id: "wifi",
-          title: "How does WiFi work?",
-          description: "Invisible highways for your messages and videos!",
-          icon: FaWifi,
-          difficulty: "Easy",
-          readTime: "4 min"
-        },
-        {
-          id: "whatsapp",
-          title: "Sending a WhatsApp Message",
-          description: "A magical journey your message takes around the world!",
-          icon: FaMobile,
-          difficulty: "Easy",
-          readTime: "3 min"
-        }
-      ]
-    },
-    {
-      title: "Money & Finance",
-      color: "var(--secondary-orange)",
-      icon: FaCoins,
-      concepts: [
-        {
-          id: "credit-card",
-          title: "How Credit Cards Work",
-          description: "Like borrowing a toy from a friend, but you pay them back later!",
-          icon: FaCreditCard,
-          difficulty: "Easy",
-          readTime: "4 min"
-        },
-        {
-          id: "interest",
-          title: "Why Banks Charge Interest",
-          description: "Payment for using someone else's piggy bank money!",
-          icon: FaMoneyBillWave,
-          difficulty: "Medium",
-          readTime: "5 min"
-        },
-        {
-          id: "inflation",
-          title: "What is Inflation?",
-          description: "When your pocket money buys less candy than before!",
-          icon: FaCoins,
-          difficulty: "Medium",
-          readTime: "4 min"
-        }
-      ]
-    },
-    {
-      title: "Science & Health",
-      color: "var(--accent-green)",
-      icon: FaDna,
-      concepts: [
-        {
-          id: "immune-system",
-          title: "How Our Body Fights Germs",
-          description: "Tiny superhero soldiers protecting your body castle!",
-          icon: FaHeart,
-          difficulty: "Easy",
-          readTime: "5 min"
-        },
-        {
-          id: "photosynthesis",
-          title: "How Plants Make Food",
-          description: "Plants are like tiny chefs cooking with sunlight!",
-          icon: FaSeedling,
-          difficulty: "Easy",
-          readTime: "4 min"
-        },
-        {
-          id: "sleep",
-          title: "Why We Need Sleep",
-          description: "Your brain's special cleaning and repair time!",
-          icon: FaSmile,
-          difficulty: "Easy",
-          readTime: "3 min"
-        }
-      ]
-    },
-    {
-      title: "Psychology & Life",
-      color: "var(--accent-pink)",
-      icon: FaPuzzlePiece,
-      concepts: [
-        {
-          id: "confirmation-bias",
-          title: "Confirmation Bias",
-          description: "Why we only hear what we want to hear!",
-          icon: FaBrain,
-          difficulty: "Medium",
-          readTime: "4 min"
-        },
-        {
-          id: "exam-nerves",
-          title: "Why We Feel Nervous",
-          description: "Your body's alarm system trying to help you!",
-          icon: FaHeart,
-          difficulty: "Easy",
-          readTime: "3 min"
-        },
-        {
-          id: "procrastination",
-          title: "Why People Procrastinate",
-          description: "When your brain wants to play instead of work!",
-          icon: FaPuzzlePiece,
-          difficulty: "Medium",
-          readTime: "5 min"
-        }
-      ]
+  // Category icons mapping
+  const categoryIcons = {
+    'Technology': FaLaptop,
+    'Money & Finance': FaCoins, 
+    'Science & Health': FaDna,
+    'Psychology & Life': FaPuzzlePiece
+  }
+
+  useEffect(() => {
+    // Load all concepts organized by category
+    const loadConcepts = async () => {
+      try {
+        console.log('🏠 Loading concepts for home page...')
+        const categories = getAllConceptsByCategory()
+        
+        // Add icons to categories
+        const categoriesWithIcons = categories.map(category => ({
+          ...category,
+          icon: categoryIcons[category.title] || FaBrain
+        }))
+        
+        setConceptCategories(categoriesWithIcons)
+        console.log('✅ Successfully loaded all concept categories')
+      } catch (error) {
+        console.error('❌ Error loading concepts:', error)
+        // Fallback to empty state or error message
+        setConceptCategories([])
+      } finally {
+        setLoading(false)
+      }
     }
-  ]
+    
+    loadConcepts()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="home">
+        <Hero />
+        <section className="concepts-section">
+          <div className="container">
+            <div className="flex-center" style={{ minHeight: '200px', flexDirection: 'column', gap: '20px' }}>
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                style={{ fontSize: '3rem' }}
+              >
+                🧠
+              </motion.div>
+              <p>Loading awesome concepts...</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    )
+  }
 
   return (
     <div className="home">
       <Hero />
       
-      <section id="concepts" className="concepts-section" ref={ref}>
+      <section className="concepts-section" id="concepts">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -181,9 +114,10 @@ const Home = () => {
             return (
               <motion.div
                 key={category.title}
+                ref={ref}
                 initial={{ opacity: 0, y: 50 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: categoryIndex * 0.2 }}
                 className="category-section"
               >
                 <div className="category-header">
@@ -200,10 +134,10 @@ const Home = () => {
                     <motion.div
                       key={concept.id}
                       initial={{ opacity: 0, scale: 0.8 }}
-                      animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                      animate={inView ? { opacity: 1, scale: 1 } : {}}
                       transition={{ 
                         duration: 0.5, 
-                        delay: (categoryIndex * 0.1) + (conceptIndex * 0.05)  // Reduced delay
+                        delay: (categoryIndex * 0.2) + (conceptIndex * 0.1) 
                       }}
                     >
                       <ConceptCard concept={concept} categoryColor={category.color} />
@@ -214,11 +148,11 @@ const Home = () => {
             )
           })}
 
-          {/* CTA Section */}
+          {/* Call to Action */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 1 }}
             className="cta-section text-center"
           >
             <h3 className="cta-title">
@@ -237,5 +171,3 @@ const Home = () => {
     </div>
   )
 }
-
-export default Home

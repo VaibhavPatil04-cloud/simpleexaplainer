@@ -5,14 +5,6 @@ import { FaRocket, FaStar, FaHeart, FaBrain } from 'react-icons/fa'
 import './Hero.css'
 
 const Hero = () => {
-  const handleScroll = (e) => {
-    e.preventDefault();
-    const conceptsSection = document.getElementById('concepts');
-    if (conceptsSection) {
-      conceptsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const floatingElements = [
     { icon: FaBrain, delay: 0, color: 'var(--primary-purple)' },
     { icon: FaHeart, delay: 0.5, color: 'var(--accent-pink)' },
@@ -72,7 +64,7 @@ const Hero = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="hero-buttons"
             >
-              <Link to="#concepts" className="btn btn-primary hero-btn" onClick={handleScroll}>
+              <Link to="#concepts" className="btn btn-primary hero-btn">
                 <FaRocket />
                 Start Learning!
               </Link>
@@ -150,3 +142,4 @@ const Hero = () => {
 
 export default Hero
 
+    

@@ -1,6 +1,7 @@
 .about-page {
   min-height: 100vh;
   padding: 40px 0;
+  background: var(--gradient-bg);
 }
 
 .about-hero {
@@ -250,68 +251,148 @@
   font-size: 1.1rem;
 }
 
+/* Dark Mode Styles - Following the exact pattern from Navbar.css */
+[data-theme='dark'] .about-page {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+[data-theme='dark'] .hero-title {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .hero-description {
+  color: #b3b3b3;
+}
+
+[data-theme='dark'] .section-title {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .mission-section {
+  background: rgba(42, 42, 42, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .mission-content h2 {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .mission-content p {
+  color: #b3b3b3;
+}
+
+[data-theme='dark'] .feature-card {
+  background: rgba(42, 42, 42, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .feature-card:hover {
+  border-color: #8b5cf6;
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.2);
+}
+
+[data-theme='dark'] .feature-title {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .feature-description {
+  color: #b3b3b3;
+}
+
+[data-theme='dark'] .team-section {
+  background: rgba(42, 42, 42, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .team-content h2 {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .team-content p {
+  color: #b3b3b3;
+}
+
+[data-theme='dark'] .value-item {
+  background: rgba(26, 26, 26, 0.8);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .cta-section {
+  background: rgba(42, 42, 42, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .cta-section h2 {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .cta-section p {
+  color: #b3b3b3;
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .about-page {
     padding: 20px 0;
   }
-  
+
   .about-hero {
     margin-bottom: 60px;
   }
-  
+
   .mission-section {
     grid-template-columns: 1fr;
     gap: 40px;
     padding: 40px 24px;
     text-align: center;
   }
-  
+
   .visual-circle {
     width: 120px;
     height: 120px;
   }
-  
+
   .visual-icon {
     font-size: 3rem;
   }
-  
+
   .features-section {
     margin-bottom: 60px;
   }
-  
+
   .features-grid {
     gap: 24px;
   }
-  
+
   .feature-card {
     padding: 24px;
   }
-  
+
   .stats-section,
   .team-section,
   .cta-section {
     padding: 40px 24px;
   }
-  
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
-  
+
   .stat-card {
     padding: 24px;
   }
-  
+
   .team-values {
     grid-template-columns: 1fr;
   }
-  
+
   .cta-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .cta-buttons .btn {
     width: 100%;
     max-width: 280px;
