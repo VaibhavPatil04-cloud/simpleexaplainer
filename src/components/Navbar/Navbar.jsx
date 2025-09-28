@@ -7,11 +7,15 @@ import {
   FaLightbulb, 
   FaQuestionCircle,
   FaBars,
-  FaTimes
+  FaTimes,
+  FaMoon,
+  FaSun
 } from 'react-icons/fa'
+import { useTheme } from '../../context/ThemeContext'
 import './Navbar.css'
 
 const Navbar = () => {
+  const { isDarkMode, toggleTheme } = useTheme()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const location = useLocation()
@@ -74,6 +78,20 @@ const Navbar = () => {
               </Link>
             )
           })}
+          
+          {/* Theme Toggle Button */}
+          <motion.button
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {isDarkMode ? (
+              <FaSun className="theme-icon" style={{ color: 'var(--accent-yellow)' }} />
+            ) : (
+              <FaMoon className="theme-icon" />
+            )}
+          </motion.button>
         </div>
 
         {/* Mobile Menu Button */}
