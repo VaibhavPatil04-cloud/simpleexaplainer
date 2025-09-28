@@ -11,6 +11,7 @@ const ConceptCard = ({ concept, categoryColor }) => {
   const handleLearnNow = (e) => {
     e.preventDefault();
     navigate(`/concept/${concept.id}`);
+    window.scrollTo(0, 0); // Add this line to scroll to top
   };
 
   const getDifficultyColor = (difficulty) => {

@@ -86,6 +86,11 @@ const ConceptPage = () => {
     setRetryCount(prev => prev + 1)
   }
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   // Loading state
   if (loading) {
     return (
