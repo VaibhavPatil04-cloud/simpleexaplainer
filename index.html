@@ -40,18 +40,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Preload Critical Resources -->
-    <link rel="preload" href="/src/main.jsx" as="script" />
+    <link rel="modulepreload" href="/src/main.jsx" crossorigin="anonymous" />
     
     <!-- Performance Optimization -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     
     <!-- Progressive Web App -->
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="application-name" content="Simple Explainer" />
     <meta name="apple-mobile-web-app-title" content="Simple Explainer" />
+    <meta name="theme-color" content="#8B5CF6" />
+    <meta name="msapplication-navbutton-color" content="#8B5CF6" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="msapplication-starturl" content="/" />
     
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">

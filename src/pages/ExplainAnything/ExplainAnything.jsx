@@ -37,9 +37,13 @@ const ExplainAnything = () => {
     
     try {
       const result = await generateExplanation(query)
+      if (!result.simpleAnswer) {
+        throw new Error('Failed to generate explanation')
+      }
       setExplanation(result)
     } catch (err) {
-      setError('Oops! Something went wrong. Try asking in a different way!')
+      setError('Sorry! I had trouble understanding that. Could you try asking in a different way?')
+      console.error('Error generating explanation:', err)
     } finally {
       setLoading(false)
     }

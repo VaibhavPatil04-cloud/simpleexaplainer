@@ -1,27 +1,31 @@
-export const generateExplanation = async (query) => {
-  await new Promise(resolve => setTimeout(resolve, 2000))
-  
-  // Basic keyword matching example
-  const queryLower = query.toLowerCase()
-  let explanation = {
-    simpleAnswer: '',
-    storyExplanation: '',
-    funFact: ''
-  }
-  
-  if (queryLower.includes('sky') && queryLower.includes('blue')) {
-    explanation = {
-      simpleAnswer: "The sky looks blue because sunlight scatters across the atmosphere and blue light scatters the most.",
-      storyExplanation: "Imagine sunlight is a box of crayons, blue crayons get thrown everywhere, so the sky looks blue!",
-      funFact: "The sky is actually a different color on other planets!"
-    }
-  } else {
-    explanation = {
-      simpleAnswer: `Here's a simple answer to "${query}": It's like a puzzle all fitting together!`,
-      storyExplanation: "Once I wondered about this too, and then I understood - learning is a big adventure!",
-      funFact: "Learning new things makes your brain grow stronger every day!"
-    }
-  }
+import { generateGeminiResponse } from './geminiService';
 
-  return explanation
-}
+export const generateExplanation = async (query) => {
+  try {
+    console.log('Generating explanation for:', query);
+    
+    if (!query.trim()) {
+      throw new Error('Please enter a question');
+    }
+
+    const response = await generateGeminiResponse(query);
+    console.log('Generated response:', response);
+    
+    if (!response || !response.simpleAnswer) {
+      throw new Error('Invalid response format');
+    }
+    
+    return {
+      simpleAnswer: response.simpleAnswer,
+      storyExplanation: response.storyExplanation,
+      funFact: response.funFact
+    };
+  } catch (error) {
+    console.error('Error in generateExplanation:', error);
+    return {
+      simpleAnswer: "I'm having trouble explaining this right now. Could you try asking in a different way?",
+      storyExplanation: "Sometimes even AI teachers need to think harder about how to explain things!",
+      funFact: "Did you know? Learning from mistakes helps us explain things better next time!"
+    };
+  }
+};
