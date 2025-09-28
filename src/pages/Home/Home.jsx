@@ -24,8 +24,9 @@ import './Home.css'
 
 const Home = () => {
   const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
+    triggerOnce: false, // Change to false to allow re-triggering
+    threshold: 0.1,
+    rootMargin: '50px 0px', // Add some margin to trigger earlier
   })
 
   const conceptCategories = [
@@ -159,7 +160,7 @@ const Home = () => {
     <div className="home">
       <Hero />
       
-      <section className="concepts-section">
+      <section id="concepts" className="concepts-section" ref={ref}>
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -180,10 +181,9 @@ const Home = () => {
             return (
               <motion.div
                 key={category.title}
-                ref={ref}
                 initial={{ opacity: 0, y: 50 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: categoryIndex * 0.2 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
                 className="category-section"
               >
                 <div className="category-header">
@@ -200,10 +200,10 @@ const Home = () => {
                     <motion.div
                       key={concept.id}
                       initial={{ opacity: 0, scale: 0.8 }}
-                      animate={inView ? { opacity: 1, scale: 1 } : {}}
+                      animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                       transition={{ 
                         duration: 0.5, 
-                        delay: (categoryIndex * 0.2) + (conceptIndex * 0.1) 
+                        delay: (categoryIndex * 0.1) + (conceptIndex * 0.05)  // Reduced delay
                       }}
                     >
                       <ConceptCard concept={concept} categoryColor={category.color} />
@@ -214,11 +214,11 @@ const Home = () => {
             )
           })}
 
-          {/* Call to Action */}
+          {/* CTA Section */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 1 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="cta-section text-center"
           >
             <h3 className="cta-title">

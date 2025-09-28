@@ -59,6 +59,13 @@ const ConceptPage = () => {
     )
   }
 
+  // Add default values for optional properties
+  const {
+    comicPanels = [],
+    detailedExplanation = [],
+    funFacts = []
+  } = concept;
+
   return (
     <div className="concept-page">
       <div className="container">
@@ -119,80 +126,86 @@ const ConceptPage = () => {
           </div>
         </motion.section>
 
-        {/* Comic Story */}
-        <motion.section 
-          className="comic-story"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <div className="section-header">
-            <h2>Let's Learn with a Story! 📚</h2>
-            <p>Follow along with our fun comic story to understand better!</p>
-          </div>
-          
-          <div className="comic-panels">
-            {concept.comicPanels.map((panel, index) => (
-              <ComicPanel 
-                key={index}
-                panel={panel}
-                index={index}
-              />
-            ))}
-          </div>
-        </motion.section>
+        {/* Comic Story - Only show if comicPanels exist */}
+        {comicPanels.length > 0 && (
+          <motion.section 
+            className="comic-story"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <div className="section-header">
+              <h2>Let's Learn with a Story! 📚</h2>
+              <p>Follow along with our fun comic story to understand better!</p>
+            </div>
+            
+            <div className="comic-panels">
+              {comicPanels.map((panel, index) => (
+                <ComicPanel 
+                  key={index}
+                  panel={panel}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.section>
+        )}
 
-        {/* Deeper Explanation */}
-        <motion.section 
-          className="deeper-explanation"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <div className="explanation-header">
-            <FaQuestionCircle className="section-icon" />
-            <h2>Want to Know More?</h2>
-          </div>
-          
-          <div className="explanation-content">
-            {concept.detailedExplanation.map((paragraph, index) => (
-              <motion.p 
-                key={index}
-                className="explanation-paragraph"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
-              >
-                {paragraph}
-              </motion.p>
-            ))}
-          </div>
-        </motion.section>
+        {/* Deeper Explanation - Only show if detailedExplanation exists */}
+        {detailedExplanation.length > 0 && (
+          <motion.section 
+            className="deeper-explanation"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <div className="explanation-header">
+              <FaQuestionCircle className="section-icon" />
+              <h2>Want to Know More?</h2>
+            </div>
+            
+            <div className="explanation-content">
+              {detailedExplanation.map((paragraph, index) => (
+                <motion.p 
+                  key={index}
+                  className="explanation-paragraph"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 * index }}
+                >
+                  {paragraph}
+                </motion.p>
+              ))}
+            </div>
+          </motion.section>
+        )}
 
-        {/* Fun Facts */}
-        <motion.section 
-          className="fun-facts"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <h2>Cool Fun Facts! 🤩</h2>
-          <div className="facts-grid">
-            {concept.funFacts.map((fact, index) => (
-              <motion.div 
-                key={index}
-                className="fact-card"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
-                whileHover={{ scale: 1.05, rotate: 1 }}
-              >
-                <div className="fact-emoji">{fact.emoji}</div>
-                <p className="fact-text">{fact.text}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
+        {/* Fun Facts - Only show if funFacts exist */}
+        {funFacts.length > 0 && (
+          <motion.section 
+            className="fun-facts"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            <h2>Cool Fun Facts! 🤩</h2>
+            <div className="facts-grid">
+              {funFacts.map((fact, index) => (
+                <motion.div 
+                  key={index}
+                  className="fact-card"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.1 * index }}
+                  whileHover={{ scale: 1.05, rotate: 1 }}
+                >
+                  <div className="fact-emoji">{fact.emoji}</div>
+                  <p className="fact-text">{fact.text}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+        )}
 
         {/* Related Concepts */}
         <RelatedConcepts currentConceptId={conceptId} />

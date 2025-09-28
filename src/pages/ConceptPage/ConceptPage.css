@@ -248,13 +248,13 @@
 
 .cta-buttons .btn-outline {
   background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border-color: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white !important; /* Force white text color */
 }
 
 .cta-buttons .btn-outline:hover {
   background: white;
-  color: var(--primary-purple);
+  color: var(--primary-purple) !important; /* Force purple text color on hover */
 }
 
 /* Mobile responsive */

@@ -1,11 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FaClock, FaGraduationCap } from 'react-icons/fa'
 import './ConceptCard.css'
 
 const ConceptCard = ({ concept, categoryColor }) => {
+  const navigate = useNavigate();
   const Icon = concept.icon
+
+  const handleLearnNow = (e) => {
+    e.preventDefault();
+    navigate(`/concept/${concept.id}`);
+  };
 
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
@@ -21,7 +27,7 @@ const ConceptCard = ({ concept, categoryColor }) => {
   }
 
   return (
-    <Link to={`/concept/${concept.id}`} className="concept-card-link">
+    <Link to={`/concept/${concept.id}`} className="concept-card-link" onClick={handleLearnNow}>
       <motion.div 
         className="concept-card"
         whileHover={{ 
