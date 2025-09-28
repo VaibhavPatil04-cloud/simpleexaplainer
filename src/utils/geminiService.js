@@ -37,7 +37,7 @@ export const generateGeminiResponse = async (prompt) => {
     // Try different model names in order of preference
     const modelNames = [
       'gemini-2.0-flash-exp', // Latest experimental model
-      'gemini-pro',          // Stable fallback
+      'gemini-2.5-flash',          // Stable fallback
       'models/gemini-pro'    // Alternative format
     ];
     
