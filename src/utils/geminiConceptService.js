@@ -39,7 +39,7 @@ export const generateConceptExplanation = async (conceptTitle, category) => {
     const ai = initializeGemini();
     
     // Try different models
-    const modelNames = ['gemini-2.0-flash-exp', 'gemini-pro', 'models/gemini-pro'];
+    const modelNames = ['gemini-2.0-flash-exp', 'gemini-2.5-flash', 'models/gemini-pro'];
     let model = null;
     
     for (const modelName of modelNames) {
