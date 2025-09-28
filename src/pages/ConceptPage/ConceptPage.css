@@ -358,6 +358,52 @@
   border: 1px solid rgba(139, 92, 246, 0.3);
 }
 
+/* Enhanced Comic Panel Dark Mode Styles - SOLUTION FOR WHITE PANELS */
+[data-theme='dark'] .comic-panel {
+  background: rgba(42, 42, 42, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .comic-panel .panel-character {
+  filter: brightness(1.2) !important;
+}
+
+[data-theme='dark'] .comic-panel .panel-dialogue {
+  color: #e0e0e0 !important;
+  background: rgba(26, 26, 26, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme='dark'] .comic-panel .panel-title {
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .comic-panel .panel-description {
+  color: #b3b3b3 !important;
+}
+
+/* Force override inline styles with !important - CRITICAL FOR FIXING WHITE PANELS */
+[data-theme='dark'] .comic-panel[style*="background"] {
+  background: rgba(42, 42, 42, 0.95) !important;
+}
+
+[data-theme='dark'] .comic-panel[style*="linear-gradient"] {
+  background: linear-gradient(135deg, rgba(42, 42, 42, 0.9), rgba(26, 26, 26, 0.9)) !important;
+}
+
+/* Additional comic panel text elements */
+[data-theme='dark'] .comic-panel h3,
+[data-theme='dark'] .comic-panel h4,
+[data-theme='dark'] .comic-panel p {
+  color: #e0e0e0 !important;
+}
+
+[data-theme='dark'] .comic-panel .comic-dialogue-bubble {
+  background: rgba(26, 26, 26, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
 /* Mobile responsive - Dark mode adjustments */
 @media (max-width: 768px) {
   .concept-page {

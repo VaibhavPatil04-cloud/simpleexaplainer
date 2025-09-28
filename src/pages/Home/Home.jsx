@@ -25,9 +25,10 @@ import './Home.css'
 
 const Home = () => {
   const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  })
+    triggerOnce: false, // Change to false to allow re-triggering
+    threshold: 0.1,
+    rootMargin: '50px 0px' // Add some margin to trigger earlier
+  });
   
   const [conceptCategories, setConceptCategories] = useState([])
   const [loading, setLoading] = useState(true)
@@ -93,7 +94,7 @@ const Home = () => {
     <div className="home">
       <Hero />
       
-      <section className="concepts-section" id="concepts">
+      <section id="concepts" className="concepts-section" ref={ref}>
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -171,3 +172,4 @@ const Home = () => {
     </div>
   )
 }
+export default Home

@@ -71,3 +71,4 @@ const RelatedConcepts = ({ currentConceptId }) => {
     </motion.section>
   )
 }
+export default RelatedConcepts

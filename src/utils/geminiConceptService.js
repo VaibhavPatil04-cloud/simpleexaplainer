@@ -1,5 +1,21 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { GEMINI_API_KEY } from '../config/api';
+import {
+  FaBrain,
+  FaWifi,
+  FaMobile,
+  FaCreditCard,
+  FaMoneyBillWave,
+  FaCoins,
+  FaHeart,
+  FaSeedling,
+  FaSmile,
+  FaPuzzlePiece,
+  FaLaptop,
+  FaDna,
+  FaGraduationCap
+} from 'react-icons/fa';
+
 
 let genAI;
 
